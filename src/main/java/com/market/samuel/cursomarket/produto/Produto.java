@@ -3,6 +3,8 @@ package com.market.samuel.cursomarket.produto;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 
+import java.time.LocalDate;
+
 
 @Table(name = "produto")
 @Entity(name = "produtos")
@@ -14,8 +16,8 @@ public class Produto {
     private String peso;
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
-    private String valor;
-    private String validade;
+    private int valor;
+    private LocalDate validade;
 
     public Produto(DadosCadastroProduto dados) {
         this.nome=dados.nome();
@@ -57,23 +59,23 @@ public class Produto {
         this.tipo = tipo;
     }
 
-    public String getValor() {
+    public int getValor() {
         return valor;
     }
 
-    public void setValor(String valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
 
-    public String getValidade() {
+    public LocalDate getValidade() {
         return validade;
     }
 
-    public void setValidade(String validade) {
+    public void setValidade(LocalDate validade) {
         this.validade = validade;
     }
 
-    public Produto(long id, String nome, String peso, Tipo tipo, String valor, String validade) {
+    public Produto(long id, String nome, String peso, Tipo tipo, int valor, LocalDate validade) {
         this.id = id;
         this.nome = nome;
         this.peso = peso;

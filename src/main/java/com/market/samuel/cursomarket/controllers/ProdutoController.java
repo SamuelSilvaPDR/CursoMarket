@@ -1,13 +1,15 @@
 package com.market.samuel.cursomarket.controllers;
 
 import com.market.samuel.cursomarket.produto.DadosCadastroProduto;
+import com.market.samuel.cursomarket.produto.DadosListagemProdutos;
 import com.market.samuel.cursomarket.produto.Produto;
 import com.market.samuel.cursomarket.produto.ProdutoRepository;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/produtos")
@@ -17,7 +19,12 @@ public class ProdutoController {
     private ProdutoRepository repository;
 
 @PostMapping
-    public void cadastrar(@RequestBody DadosCadastroProduto dados){
+@Transactional
+    public void cadastrar(@RequestBody @Valid DadosCadastroProduto dados){
         repository.save(new Produto(dados));
+    }
+@GetMapping
+    public List<DadosListagemProdutos> listar() {
+        return repository.findAll().stream().map(DadosListagemProdutos::new).toList();
     }
 }
