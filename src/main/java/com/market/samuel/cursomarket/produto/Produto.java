@@ -1,5 +1,6 @@
 package com.market.samuel.cursomarket.produto;
 
+import com.market.samuel.cursomarket.funcionario.DadosCadastroFuncionario;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 
@@ -26,6 +27,7 @@ public class Produto {
         this.valor=dados.valor();
         this.validade= dados.validade();
     }
+
 
     public long getId() {
         return id;
