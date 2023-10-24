@@ -89,4 +89,12 @@ public class Produto {
     public Produto() {
     }
 
+    public void atualizarProduto(DadosAtulizarProduto dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if (dados.tipo() != null) {
+            this.tipo = dados.tipo();
+        }
+    }
 }

@@ -1,9 +1,6 @@
 package com.market.samuel.cursomarket.controllers;
 
-import com.market.samuel.cursomarket.produto.DadosCadastroProduto;
-import com.market.samuel.cursomarket.produto.DadosListagemProdutos;
-import com.market.samuel.cursomarket.produto.Produto;
-import com.market.samuel.cursomarket.produto.ProdutoRepository;
+import com.market.samuel.cursomarket.produto.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +24,11 @@ public class ProdutoController {
     public List<DadosListagemProdutos> listar() {
         return repository.findAll().stream().map(DadosListagemProdutos::new).toList();
     }
+
+@PutMapping
+@Transactional
+    public void atualizar(@RequestBody @Valid DadosAtulizarProduto dados){
+        var produto = repository.getReferenceById(dados.id());
+        produto.atualizarProduto(dados);
+}
 }
